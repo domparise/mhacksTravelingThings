@@ -2,8 +2,8 @@ module.exports = function (app) {
 
 	var concur = require('concur-platform');
 
-    app.get('/', function (req, res, next) {
-        return res.sendFile(__dirname+'/public/index.html')
+    app.get('/', function (req, res) {
+        return res.render('app')
     })
 
     app.post('/api', function (req, res) {
