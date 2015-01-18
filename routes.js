@@ -15,7 +15,7 @@ module.exports = function (app) {
 		    "LocationSubdivision": "US-MI",
 		    "TransactionAmount": "12.23",
 		    "TransactionDate": "2015-05-10",
-		    "VendorDescription": "Booty Time"
+		    "VendorDescription": "BootyTime"
 		}
 
 		var options = {
