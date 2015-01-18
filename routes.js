@@ -7,15 +7,15 @@ module.exports = function (app) {
 
     app.post('/api', function (req, res) {
     	var quickexpenseJSON = {
-		    "Comment": "I am a Quick Expense",
+		    "Comment": "I am a booty slap",
 		    "CurrencyCode": "USD",
 		    "ExpenseTypeCode": "CARMI",
-		    "LocationCity": "Seattle",
+		    "LocationCity": "Ann Arbor",
 		    "LocationCountry": "US",
-		    "LocationSubdivision": "US-WA",
+		    "LocationSubdivision": "US-MI",
 		    "TransactionAmount": "12.23",
 		    "TransactionDate": "2015-05-10",
-		    "VendorDescription": "Ay wat up"
+		    "VendorDescription": "Booty Time"
 		}
 
 		var options = {
