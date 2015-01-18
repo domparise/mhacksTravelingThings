@@ -17,21 +17,22 @@ module.exports = function (app) {
 		    "TransactionAmount": "12.23",
 		    "TransactionDate": "2015-05-10",
 		    "VendorDescription": "Ay wat up"
-		};
+		}
 
 		var options = {
 		    oauthToken:'WUqR9zTdVtOCaJZIr47Squi/CT0=',
 		    contentType:'application/json',
 		    body:quickexpenseJSON
-		};
+		}
 
 		concur.quickexpenses.send(options)
 		.then(function(data){
-		    console.log(data);
+		    console.log(data)
 		})
 		.fail(function (error) {
-		    console.log(error);
-		});
+		    console.log(error)
+		})
+
     })
 
 }
