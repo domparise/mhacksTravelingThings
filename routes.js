@@ -13,7 +13,7 @@ module.exports = function (app) {
 		    "LocationCity": "Ann Arbor",
 		    "LocationCountry": "US",
 		    "LocationSubdivision": "US-MI",
-		    "TransactionAmount": "12.23",
+		    "TransactionAmount": "69.69",
 		    "TransactionDate": "2015-05-10",
 		    "VendorDescription": "BootyTime"
 		}
