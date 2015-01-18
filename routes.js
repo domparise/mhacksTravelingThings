@@ -9,7 +9,7 @@ module.exports = function (app) {
     	var quickexpenseJSON = {
 		    "Comment": "I am a booty slap",
 		    "CurrencyCode": "USD",
-		    "ExpenseTypeCode": "CARMI",
+		    "ExpenseTypeCode": "ROOME",
 		    "LocationCity": "Ann Arbor",
 		    "LocationCountry": "US",
 		    "LocationSubdivision": "US-MI",
