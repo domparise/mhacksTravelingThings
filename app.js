@@ -1,8 +1,8 @@
 var express = require('express')
 var app = express()
 
-app.set('views',__dirname+'/client') // use jade templating engine 
-app.set('view engine','jade') // we only template the authenticated section of the website
+app.set('views',__dirname+'/client')
+app.set('view engine','jade') // use jade templating engine 
 
 require(__dirname+'/routes.js')(app)
 
