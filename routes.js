@@ -3,7 +3,7 @@ module.exports = function (app) {
 	var concur = require('concur-platform');
 
     app.get('/', function (req, res) {
-        return res.render('app')
+        return res.render('app', {theVariable:'value'})
     })
 
     app.post('/api', function (req, res) {
