@@ -1,0 +1,85 @@
+var request = require('request'),
+    utils = require('../utils/utils.js'),
+    xml = require('../utils/xml'),
+    Q = require('q');
+
+var itineraryURL = utils.serviceURL + '/api/travel/trip/v1.1';
+
+module.exports = {
+    get: function(options) {
+        var deferred = Q.defer();
+
+        var headers = {
+            'Authorization' : 'OAuth ' + options.oauthToken,
+            'Accept' : 'application/json',
+            'User-Agent':'Concur-platform-sdk-js'
+        };
+
+        var itinURL = itineraryURL;
+        if (options.id) {
+            itinURL =  itinURL + '/'+options.id;
+        }
+
+        request({url:itinURL, headers:headers}, function(error, response, body) {
+            // Error with the actual request
+            if (error) {
+                return deferred.reject(error);
+            }
+
+            // Non-200 HTTP response code
+            if (response.statusCode != 200) {
+                return deferred.reject({'error':'Itinerary URL ('+itineraryURL+') returned HTTP status code '+response.statusCode});
+            }
+
+            if (options.id) {
+                xml.getCleansedObjectFromXmlBody(body, function (err, result) {
+                    if (err){
+                        deferred.resolve(err);
+                    } else {
+                        deferred.resolve(result);
+                    }
+                });
+            } else {
+                var bodyJSON = JSON.parse(body);
+
+                // 200, but Error in token payload
+                if (bodyJSON.Error) return deferred.reject({'error':bodyJSON.Message});
+                // parse and map access token
+                deferred.resolve(bodyJSON);
+            }
+        });
+        return deferred.promise;
+    },
+    send: function(options) {
+        var deferred = Q.defer();
+
+        var headers = {
+            'Authorization' : 'OAuth '+options.oauthToken,
+            'Accept':'application/json',
+            'Content-Type':options.contentType,
+            'User-Agent':'Concur-platform-sdk-js'
+        };
+
+        request.post({url:itineraryURL, headers:headers, body:options.body}, function(error, response, body) {
+            // Error with the actual request
+            if (error) {
+                return deferred.reject(error);
+            }
+
+            // Non-200 HTTP response code
+            if (response.statusCode != 200) {
+                return deferred.reject({'error':'Itinerary URL ('+itineraryURL+') returned HTTP status code '+response.statusCode});
+            }
+
+            xml.getCleansedObjectFromXmlBody(body, function (err, result) {
+                if (err){
+                    deferred.resolve(err);
+                } else {
+                    delete result.Itinerary.$;
+                    deferred.resolve(result);
+                }
+            });
+        });
+        return deferred.promise;
+    }
+};
